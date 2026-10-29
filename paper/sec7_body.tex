@@ -1,0 +1,202 @@
+\appendix
+\section*{Appendix: proofs}
+
+Throughout, $Q\in[0,1]^{N\times M}$ has rows $q_x$ and columns $q^{(j)}$,
+$f=\tfrac1N\sum_x q_x$, $p_x(w)=\inner{w}{q_x}$, and tangent directions satisfy
+$\mathbf 1^\top\mathrm dw=0$. We assume throughout that $q_{xj}>0$ (every
+strategy has positive success on every prompt), which specialization instances
+satisfy through a baseline; it makes the rows positively span $\R^M$.
+
+\section{Proof of Theorem \ref{thm:tilt} (tilt identity)}
+
+Natural policy gradient / mirror descent on the mode logits $\theta$ with the
+negative-entropy mirror map and KL anchor of strength $\beta$ gives the
+continuous-time flow $\dot\theta=\tfrac1\beta A$, where $A$ is the expected
+advantage. For a binary verifiable reward the expected advantage of strategy $j$
+is $A_j=f_j-\inner{w}{f}$, so $\dot\theta_j=\tfrac1\beta(f_j-\inner wf)$ and, since
+the common term shifts all logits equally and cancels under the softmax,
+$\theta_\tau=\theta_0+\tfrac{\tau}{\beta}f+c\mathbf 1$. Exponentiating,
+$\wt\propto\wz\exp(\tfrac{\tau}{\beta}f)$; absorbing $1/\beta$ into $\tau$ gives
+the stated tilt, exact for mirror descent.
+
+\paragraph{Proposition \ref{prop:grpo} (GRPO gap).} GRPO replaces $A_j$ by the
+group-standardized advantage $\widehat A_j=(f_j-\bar p)/\varsigma(\bar
+p)\cdot\rho_j$, $\varsigma(\bar p)=\sqrt{\bar p(1-\bar p)}$,
+$\rho_j=1-\bar p^{\,G}-(1-\bar p)^{G}$. This is an affine, $\tau$-dependent
+reparameterization of $f$ times a bounded factor, so the flow is a time-changed
+tilt up to the variation $\delta=\sup_\tau|\partial_\tau\log\varsigma(\bar
+p_\tau)|$ over the matched-entropy window, and the total variation to the best-fit
+tilt is $O(\delta)$. We state this as a proposition with numerical evidence, not
+a theorem: the package measures the total variation below $3\times10^{-4}$ and
+records the finite-$G$ transient non-monotonicity separately.
+
+\section{Proof of Theorem \ref{thm:nfl} (no free lunch)}
+
+Throughout, a free lunch at interior $w$ is $\mathrm dw$ with
+$Q\,\mathrm dw\ge0$, $Q\,\mathrm dw\ne0$, $\mathbf 1^\top\mathrm dw=0$; it does not
+depend on $w$.
+
+\paragraph{(a) Stiemke condition.}
+Let the columns of $B\in\R^{M\times(M-1)}$ span $\{\mathrm dw:\mathbf 1^\top\mathrm
+dw=0\}$, so free lunches correspond to $z$ with $(QB)z\ge0$, $(QB)z\ne0$. By
+Stiemke's lemma, exactly one of (i) $\exists z:(QB)z\ge0,(QB)z\ne0$ and (ii)
+$\exists y>0:(QB)^\top y=0$ holds. Condition (ii) reads $B^\top Q^\top y=0$, i.e.\
+$Q^\top y\perp\{\mathbf 1\}^\perp$, i.e.\ $Q^\top y=\mu\mathbf 1$. Hence no free
+lunch $\iff\exists y>0,\mu:\ \sum_x y_xq_{xj}=\mu\ \forall j$, which is
+\eqref{eq:farkas} in Stiemke form. Since $f=\tfrac1N\sum_x q_x$, adding
+$y'=y+c\mathbf 1$ shows this is equivalent to the inhomogeneous form
+$f_j+\sum_x y'_xq_{xj}=\mu'$ with $y'\ge0$; the strict positivity of $y$ is the
+correct statement. $\square$
+
+\paragraph{(b) Exclusive specialization.}
+Let $\mathrm dw\ne0$, $\mathbf 1^\top\mathrm dw=0$, so some $\mathrm dw_j<0$. For
+$x\in X_j^{\mathrm{excl}}$ only $j$ solves $x$, so $(Q\,\mathrm
+dw)_x=\mathrm dw_j\,q_{xj}<0$. Thus $\mathrm dw\notin K$ unless $\mathrm dw=0$:
+the only non-regressing direction is zero, so no free lunch exists and every
+pass@1 gain lowers some prompt. $\square$
+
+\paragraph{(b$'$) Dominant specialization.}
+Pick one representative prompt $x_j$ per strategy with $q_{x_jj}\ge d$ and
+$q_{x_jj'}\le\varepsilon$ for $j'\ne j$. The submatrix $S=(q_{x_ij})_{i,j}$ is
+$S=D(I+D^{-1}E)$ with $D=\mathrm{diag}(q_{x_jj})\succeq dI$ and $E$ the
+off-diagonal part, $\|D^{-1}E\|_\infty\le(M-1)\varepsilon/d<1/2$. By the Neumann
+series $S^{-\top}\mathbf 1=(I+D^{-1}E)^{-\top}D^{-1}\mathbf 1>0$ since the
+correction has $\ell_\infty$ norm $<1$ and $D^{-1}\mathbf 1>0$. Put price
+$y_{x_j}=(S^{-\top}\mathbf 1)_j>0$ on the representatives and a small $\eta>0$ on
+every other prompt; then $Q^\top y=\mathbf 1+\eta\sum_{x\notin\{x_j\}}q_x$, which
+is $\mu\mathbf 1$ after a continuity adjustment of the $y_{x_j}$ (the map
+$y\mapsto Q^\top y$ is open at the interior point). Hence a strictly positive
+price exists and, by (a), no free lunch. The package finds no free lunch on
+$2000/2000$ dominant-specialized instances. $\square$
+
+\paragraph{(c) Necessity, and (Proposition \ref{prop:uniquebest}) unique-best is
+insufficient.}
+If $q_{xj^\star}\ge q_{xj}$ for all $x,j$, then $\mathrm dw=e_{j^\star}-\tfrac1M
+\mathbf 1$ has $(Q\,\mathrm dw)_x=q_{xj^\star}-\bar q_x\ge0$ and $\inner f{\mathrm
+dw}>0$ unless all columns coincide: a free lunch. Being merely unique-best does
+not suffice: for
+$Q=\bigl(\begin{smallmatrix}1&.9&.96\\.9&1&.96\\.5&.5&1\end{smallmatrix}\bigr)$
+each strategy is the unique best on its prompt, yet $\mathrm dw=(-0.6,-0.4,1)$
+gives $Q\,\mathrm dw=(0,0.02,0.5)\ge0$, $\ne0$, with $\inner f{\mathrm
+dw}=+0.173$, and the Stiemke dual is infeasible. The near-generalist (column 3,
+$0.96$ on the first two prompts) absorbs the mass defunded from the specialists.
+$\square$
+
+\section{Proof of Theorem \ref{thm:price} (the pass@$k$ price)}
+
+Recall $\Delta_k=-k\int_0^1(1-p)^{k-1}G(p)\,\mathrm dp$ with $G=F_\tau-F_0$, and
+substitute $s=-\log(1-p)$ to get $\Delta_k=-k\int_0^\infty
+e^{-(k-1)s}\,\tilde G(s)\,\mathrm ds$ with $\tilde G(s)=G(1-e^{-s})$.
+
+\paragraph{(a) Crossing bound.}
+The kernel $\mathcal K(k,s)=e^{-(k-1)s}$ is strictly totally positive on
+$(0,\infty)^2$: for $k_1<\dots<k_n$ and $s_1<\dots<s_n$ the matrix
+$(e^{-(k_i-1)s_j})$ is a generalized Vandermonde with positive determinant
+\citep{karlin68tp,schoenberg51pff}. By the variation-diminishing property of
+strictly totally positive kernels, the number of sign changes of
+$k\mapsto\int\mathcal K(k,s)\tilde G(s)\,\mathrm ds$ is at most the number of sign
+changes of $\tilde G$, which equals $\Svar(G)$. The prefactor $-k<0$ does not
+change sign for $k>0$. Hence $\Svar(k\mapsto\Delta_k)\le\Svar(G)$. $\square$
+
+\paragraph{(b) Tightness.}
+Fix $m$. Choose $s_0<\dots<s_m$ geometrically spaced and place a signed,
+mass-conserving shift $\nu=\sum_{i=0}^m c_i\delta_{s_i}$ with alternating signs
+$\operatorname{sgn}c_i=(-1)^i$ and $\sum_i c_i=0$, realizable as
+$\mu_\tau-\mu_0$ by moving prompt mass between the corresponding success levels.
+Then $\Delta_k=-\sum_i c_i e^{-k s_i}$ is a generalized Dirichlet polynomial whose
+number of positive-$k$ zeros equals its number of coefficient sign changes when
+the exponents are well separated (Descartes' rule for exponential sums,
+\citep{jameson06descartes}); choosing the spacing so each zero falls in a
+distinct decade of $k$ yields exactly $m$ crossings. The construction is realized
+in the package for $m=1,\dots,6$ with no bound violation. $\square$
+
+\paragraph{(c) Forced crossover.}
+The tilt multiplies $w_{0,j}$ by $e^{\tau f_j}/Z(\tau)$ with $\log
+Z(\tau)=\Lambda(\tau)=\log\E_{\wz}e^{\tau f}$, so $w_{\tau,j}/w_{0,j}
+=e^{\tau(f_j-\Lambda(\tau)/\tau)}$: strategy $j$ loses mass iff
+$f_j<\Lambda(\tau)/\tau$. By Jensen, $\Lambda(\tau)/\tau=\tfrac1\tau\log\E
+e^{\tau f}\ge\E f=R_0$ for every $\tau>0$. Under Assumption \ref{ass:fine} every
+strategy covering a minimal-success prompt $x^\star$ has $f_j<R_0\le\Lambda/\tau$,
+so all of them lose mass and $p_{x^\star}(\wt)<p_{x^\star}(\wz)=\min_x
+p_x(\wz)$. Hence the smallest success value strictly decreases, giving positive
+$G$ mass arbitrarily close to $p=0$, i.e.\ $\tilde G(s)>0$ for small $s$. By
+Watson's lemma the large-$k$ integral
+$\Delta_k=-k\int e^{-(k-1)s}\tilde G(s)\,\mathrm ds$ is dominated by that region,
+so $\Delta_k<0$ for all large $k$: a crossover is forced, with count obeying (a).
+The looser threshold $f_j<R(\tau)$ (the tilted mean) is incorrect: for
+$f=(0.9,0.75,0.5,0.1)$, uniform $\wz$, $\tau=5$, one has $R(\tau)=0.814$ but
+$\Lambda/\tau=0.720$, and the strategy with $f=0.75<R(\tau)$ \emph{gains} mass
+($\times1.16$). $\square$
+
+\paragraph{(d) Uniqueness.}
+If $p_x(\wt)=\phi(p_x(\wz))$ with $\phi$ increasing, the pushforward relation
+makes $G(p)=F_\tau(p)-F_0(p)$ change sign at most once: $F_\tau(p)=F_0(\phi^{-1}(p))$
+and $\phi^{-1}(p)-p$ changes sign at most once on the range where $\phi$ crosses
+the diagonal, so $\Svar(G)\le1$ and by (a) there is at most one crossing. Taking
+$\phi$ a sharpening map recovers the single crossover of
+\citep{yangchen2026kernel}. $\square$
+
+\paragraph{(e) Counterexample.}
+If Assumption \ref{ass:fine} fails because the hard tail retains a coverage
+floor, then $G(p)\le0$ near $p=0$ (the tilt does not deplete the hardest prompts)
+and the large-$k$ integral is nonnegative, so no crossover forms despite a
+per-prompt loss elsewhere. The package realizes this regime (regime B) with
+per-prompt loss in $96\%$ of instances and an aggregate crossover in only
+$15\%$. $\square$
+
+\section{Proof of Theorem \ref{thm:frontier} (price frontier)}
+
+For $\gamma\in[0,1]$ the program $\max_{w\in\Delta^{M-1}}\inner wf$ s.t.\
+$Qw\ge\gamma\,Q\wz$ is linear, feasible ($w=\wz$ when $\gamma\le1$), and bounded,
+so an optimum $w(\gamma)$ exists. The feasible set shrinks as $\gamma$ increases,
+so the optimal value $\inner{w(\gamma)}f$ is nonincreasing in $\gamma$: the
+pass@1 gain is monotone. At $\gamma=1$ the constraint is $Qw\ge Q\wz$, i.e.\
+$p_x(w)\ge p_x(\wz)$ for all $x$; by Theorem \ref{thm:nfl}(b) under specialization
+this forces $Qw=Q\wz$, hence $F_\tau=F_0$, $\Delta_k\equiv0$, and zero pass@1
+gain. For general $\gamma$, $Qw\ge\gamma Q\wz$ gives
+$F_\tau(p)\le F_0(p/\gamma)$, from which the worst pass@$k$ loss is monotone in
+$\gamma$; the first crossing $k^\star$ therefore moves outward as $\gamma\to1$.
+For $M=2$, $w=(u,1-u)$ and $p_x(u)$ is affine in $u$, so the constraints are
+intervals in $u$ and the optimum is the interval endpoint maximizing
+$\inner wf$; substituting gives $k^\star(\gamma)$ in closed form. $\square$
+
+\section{Proof of Theorem \ref{thm:tiltlaw} and the lemmas}
+
+\paragraph{Lemma \ref{lem:bump} (entropy rate).}
+With $\wt\propto\wz e^{\tau f}$, $\log w_{\tau,j}=\log w_{0,j}+\tau f_j-\log
+Z(\tau)$ and $\partial_\tau w_{\tau,j}=w_{\tau,j}(f_j-\inner{\wt}f)$. Then
+$H(\wt)=-\sum_j w_{\tau,j}\log w_{\tau,j}=-\sum_j w_{\tau,j}\log w_{0,j}
+-\tau\inner{\wt}f+\log Z$, and differentiating,
+\[
+\tfrac{\mathrm d}{\mathrm d\tau}H(\wt)
+=-\Cov_{\wt}(f,\log\wz)-\tau\Var_{\wt}(f).
+\]
+With a uniform $\wz$ the covariance vanishes and $H$ is nonincreasing, with limit
+$\log|\arg\max f|$. For nonuniform $\wz$, $\tfrac{\mathrm d}{\mathrm
+d\tau}H|_{\tau=0}=-\Cov_{\wz}(f,\log\wz)$, so the entropy rises initially iff
+$\Cov_{\wz}(f,\log\wz)<0$. $\square$
+
+\paragraph{Theorem \ref{thm:tiltlaw} (tilt law).}
+Let $\wz$ be uniform and let the gap $g=b-f$ have density $\sim c\,g^{\kappa-1}$
+near $0$. Under the tilt the gap law is proportional to
+$g^{\kappa-1}e^{-\tau g}$, i.e.\ $\mathrm{Gamma}(\kappa,\tau)$ to leading order,
+so $b-R=\E_{\wt}[g]=\kappa/\tau\,(1+o(1))$. The effective number of surviving
+strategies is $\int_0^{1/\tau}c\,g^{\kappa-1}\mathrm dg\propto\tau^{-\kappa}$, so
+$H=\log M-\mathrm{KL}(\wt\|\wz)=\text{const}-\kappa\log\tau+o(\log\tau)$.
+Eliminating $\tau$,
+\[
+b-R=a_\kappa\exp(H/\kappa)(1+o(1)),\qquad
+a_\kappa=\kappa\,(c\,\Gamma(\kappa)\,M e^{\kappa})^{-1/\kappa},
+\]
+valid in the mesoscopic window $\tau\cdot\text{gap}\to0$, $\tau\log M\to\infty$.
+For $\kappa=1$ this is $R=-a e^H+b$. The derivation is asymptotic; the package
+confirms the slope $1/\kappa$ to within $2.6\%$ for $\kappa\in\{0.5,1,2\}$, and
+the exact finite-window and terminal behavior is concurrent work
+\citep{cui2025entropy}. $\square$
+
+\paragraph{Lemma \ref{lem:sharing} (sharing is necessary).}
+If each prompt has an independent tabular policy under the full gradient flow,
+then $\dot p_x=\eta\,\Var_{w^{(x)}}(r)\ge0$, so $p_x$ is nondecreasing for every
+$x$, giving $\Delta_k\ge0$ for all $k$ and no inversion. An inversion therefore
+requires parameters shared across prompts. Under finite-group stochastic GRPO the
+monotonicity can fail transiently. $\square$

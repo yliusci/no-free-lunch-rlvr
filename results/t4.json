@@ -1,0 +1,20 @@
+{
+  "kappa=0.5": {
+    "predicted_slope_1_over_kappa": 2.0,
+    "measured_slope": 2.0057103220935364,
+    "rel_err": 0.0028551610467681954,
+    "n_window_points": 36
+  },
+  "kappa=1.0": {
+    "predicted_slope_1_over_kappa": 1.0,
+    "measured_slope": 0.985591213769071,
+    "rel_err": 0.014408786230929005,
+    "n_window_points": 53
+  },
+  "kappa=2.0": {
+    "predicted_slope_1_over_kappa": 0.5,
+    "measured_slope": 0.4874475697810682,
+    "rel_err": 0.02510486043786364,
+    "n_window_points": 26
+  }
+}

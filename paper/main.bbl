@@ -1,0 +1,592 @@
+\begin{thebibliography}{102}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agarwal et~al.(2021)Agarwal, Kakade, Lee, and
+  Mahajan]{agarwal21pgtheory}
+Alekh Agarwal, Sham~M. Kakade, Jason~D. Lee, and Gaurav Mahajan.
+\newblock On the theory of policy gradient methods: Optimality, approximation,
+  and distribution shift.
+\newblock \emph{Journal of Machine Learning Research 22; arXiv:1908.00261},
+  2021.
+
+\bibitem[Agarwal et~al.(2025)]{agarwal2025entropymin}
+Shivam Agarwal et~al.
+\newblock The unreasonable effectiveness of entropy minimization in llm
+  reasoning.
+\newblock \emph{arXiv preprint arXiv:2505.15134}, 2025.
+
+\bibitem[Ahmadian et~al.(2024)]{ahmadian2024rloo}
+Arash Ahmadian et~al.
+\newblock Back to basics: Revisiting reinforce style optimization for learning
+  from human feedback in llms.
+\newblock \emph{arXiv preprint arXiv:2402.14740}, 2024.
+
+\bibitem[Amini et~al.(2024)]{amini2024variationalbon}
+Afra Amini et~al.
+\newblock Variational best-of-n alignment.
+\newblock \emph{arXiv preprint arXiv:2407.06057}, 2024.
+
+\bibitem[Azar et~al.(2023)Azar, Guo, Piot, Munos, Rowland, Valko, and
+  Calandriello]{azar24ipo}
+Mohammad~Gheshlaghi Azar, Zhaohan~Daniel Guo, Bilal Piot, R{\'e}mi Munos, Mark
+  Rowland, Michal Valko, and Daniele Calandriello.
+\newblock A general theoretical paradigm to understand learning from human
+  preferences.
+\newblock \emph{arXiv preprint arXiv:2310.12036}, 2023.
+
+\bibitem[Baker et~al.(2025)]{baker2025monitoring}
+Bowen Baker et~al.
+\newblock Monitoring reasoning models for misbehavior and the risks of
+  promoting obfuscation.
+\newblock \emph{arXiv preprint arXiv:2503.11926}, 2025.
+
+\bibitem[Bercovich et~al.(2025)]{bercovich2025llamanemotron}
+Akhiad Bercovich et~al.
+\newblock Llama-nemotron: Efficient reasoning models.
+\newblock \emph{arXiv preprint arXiv:2505.00949}, 2025.
+
+\bibitem[Bradley and Terry(1952)]{bradleyterry52}
+Ralph~Allan Bradley and Milton~E. Terry.
+\newblock Rank analysis of incomplete block designs: I. the method of paired
+  comparisons.
+\newblock \emph{Biometrika 39(3-4), 324-345}, 1952.
+
+\bibitem[Brown et~al.(2024)]{brown2024monkeys}
+Bradley Brown et~al.
+\newblock Large language monkeys: Scaling inference compute with repeated
+  sampling.
+\newblock \emph{arXiv preprint arXiv:2407.21787}, 2024.
+
+\bibitem[Chen et~al.(2021)]{chen2021codex}
+Mark Chen et~al.
+\newblock Evaluating large language models trained on code.
+\newblock \emph{arXiv preprint arXiv:2107.03374}, 2021.
+
+\bibitem[Chen et~al.(2023)]{chen2023universalsc}
+Xinyun Chen et~al.
+\newblock Universal self-consistency for large language model generation.
+\newblock \emph{arXiv preprint arXiv:2311.17311}, 2023.
+
+\bibitem[Chen et~al.(2025)]{chen2025passktraining}
+Zhipeng Chen et~al.
+\newblock Pass@k training for adaptively balancing exploration and exploitation
+  of large reasoning models.
+\newblock \emph{arXiv preprint arXiv:2508.10751}, 2025.
+
+\bibitem[Christiano et~al.(2017)Christiano, Leike, Brown, Martic, Legg, and
+  Amodei]{christiano17}
+Paul~F. Christiano, Jan Leike, Tom~B. Brown, Miljan Martic, Shane Legg, and
+  Dario Amodei.
+\newblock Deep reinforcement learning from human preferences.
+\newblock \emph{arXiv preprint arXiv:1706.03741}, 2017.
+
+\bibitem[Cobbe et~al.(2021)]{cobbe2021gsm8k}
+Karl Cobbe et~al.
+\newblock Training verifiers to solve math word problems.
+\newblock \emph{arXiv preprint arXiv:2110.14168}, 2021.
+
+\bibitem[Cui et~al.(2025)]{cui2025entropy}
+Ganqu Cui et~al.
+\newblock The entropy mechanism of reinforcement learning for reasoning
+  language models.
+\newblock \emph{arXiv preprint arXiv:2505.22617}, 2025.
+
+\bibitem[{DeepSeek-AI} et~al.(2025){DeepSeek-AI}, Guo,
+  et~al.]{deepseekai2025r1}
+{DeepSeek-AI}, Daya Guo, et~al.
+\newblock Deepseek-r1: Incentivizing reasoning capability in llms via
+  reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2501.12948}, 2025.
+
+\bibitem[Dong et~al.(2023)]{dong2023raft}
+Hanze Dong et~al.
+\newblock Raft: Reward ranked finetuning for generative foundation model
+  alignment.
+\newblock \emph{arXiv preprint arXiv:2304.06767}, 2023.
+
+\bibitem[Elhage et~al.(2022)]{elhage22superposition}
+Nelson Elhage et~al.
+\newblock Toy models of superposition.
+\newblock \emph{arXiv preprint arXiv:2209.10652}, 2022.
+
+\bibitem[Ethayarajh et~al.(2024)Ethayarajh, Xu, Muennighoff, Jurafsky, and
+  Kiela]{ethayarajh24kto}
+Kawin Ethayarajh, Winnie Xu, Niklas Muennighoff, Dan Jurafsky, and Douwe Kiela.
+\newblock Kto: Model alignment as prospect theoretic optimization.
+\newblock \emph{arXiv preprint arXiv:2402.01306}, 2024.
+
+\bibitem[Gao et~al.(2022)Gao, Schulman, and Hilton]{gao23overopt}
+Leo Gao, John Schulman, and Jacob Hilton.
+\newblock Scaling laws for reward model overoptimization.
+\newblock \emph{arXiv preprint arXiv:2210.10760}, 2022.
+
+\bibitem[Gui et~al.(2025)]{gui2025inferenceobj}
+Lin Gui et~al.
+\newblock Optimizing language models for inference-time objectives.
+\newblock \emph{arXiv preprint arXiv:2503.19595}, 2025.
+
+\bibitem[Haarnoja et~al.(2018)Haarnoja, Zhou, Abbeel, and
+  Levine]{haarnoja2018sac}
+Tuomas Haarnoja, Aurick Zhou, Pieter Abbeel, and Sergey Levine.
+\newblock Soft actor-critic: Off-policy maximum entropy deep reinforcement
+  learning with a stochastic actor.
+\newblock \emph{arXiv preprint arXiv:1801.01290}, 2018.
+
+\bibitem[He et~al.(2025)]{he2025skywork}
+Jujie He et~al.
+\newblock Skywork open reasoner 1 technical report.
+\newblock \emph{arXiv preprint arXiv:2505.22312}, 2025.
+
+\bibitem[Hu et~al.(2025{\natexlab{a}})]{hu2025reinforceplusplus}
+Jian Hu et~al.
+\newblock Reinforce++: A simple and efficient approach for aligning large
+  language models.
+\newblock \emph{arXiv preprint arXiv:2501.03262}, 2025{\natexlab{a}}.
+
+\bibitem[Hu et~al.(2025{\natexlab{b}})]{hu2025orz}
+Jingcheng Hu et~al.
+\newblock Open-reasoner-zero: An open source approach to scaling up
+  reinforcement learning on the base model.
+\newblock \emph{arXiv preprint arXiv:2503.24290}, 2025{\natexlab{b}}.
+
+\bibitem[Huang et~al.(2024)]{huang2024sharpening}
+Audrey Huang et~al.
+\newblock Self-improvement in language models: The sharpening mechanism.
+\newblock \emph{arXiv preprint arXiv:2412.01951}, 2024.
+
+\bibitem[Jameson(2006)]{jameson06descartes}
+Graham J.~O. Jameson.
+\newblock Counting zeros of generalised polynomials: Descartes' rule of signs
+  and laguerre's extensions.
+\newblock \emph{Mathematical Gazette 90(518), 223-234}, 2006.
+
+\bibitem[Jiang et~al.(2025)]{jiang2025hivemind}
+Liwei Jiang et~al.
+\newblock Artificial hivemind: The open-ended homogeneity of language models
+  (and beyond).
+\newblock \emph{arXiv preprint arXiv:2510.22954}, 2025.
+
+\bibitem[Kakade(2001)]{kakade01npg}
+Sham Kakade.
+\newblock A natural policy gradient.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2001.
+
+\bibitem[Kalai et~al.(2025)Kalai, Nachum, Vempala, and
+  Zhang]{kalai25hallucinate}
+Adam~Tauman Kalai, Ofir Nachum, Santosh~S. Vempala, and Edwin Zhang.
+\newblock Why language models hallucinate.
+\newblock \emph{arXiv preprint arXiv:2509.04664}, 2025.
+
+\bibitem[Karlin(1968)]{karlin68tp}
+Samuel Karlin.
+\newblock \emph{Total Positivity, Vol. I}.
+\newblock Stanford University Press, 1968.
+
+\bibitem[Karlin and Studden(1966)]{karlinstudden66}
+Samuel Karlin and William~J. Studden.
+\newblock \emph{Tchebycheff Systems: With Applications in Analysis and
+  Statistics}.
+\newblock Interscience/Wiley, 1966.
+
+\bibitem[Kazemnejad et~al.(2024)]{kazemnejad2024vineppo}
+Amirhossein Kazemnejad et~al.
+\newblock Vineppo: Unlocking rl potential for llm reasoning through refined
+  credit assignment.
+\newblock \emph{arXiv preprint arXiv:2410.01679}, 2024.
+
+\bibitem[Khatri et~al.(2025)Khatri, Madaan, et~al.]{khatri2025scalerl}
+Devvrit Khatri, Lovish Madaan, et~al.
+\newblock The art of scaling reinforcement learning compute for llms.
+\newblock \emph{arXiv preprint arXiv:2510.13786}, 2025.
+
+\bibitem[{Kimi Team}(2025)]{kimiteam2025k15}
+{Kimi Team}.
+\newblock Kimi k1.5: Scaling reinforcement learning with llms.
+\newblock \emph{arXiv preprint arXiv:2501.12599}, 2025.
+
+\bibitem[Kirk et~al.(2023)Kirk, Mediratta, Nalmpantis, Luketina, Hambro,
+  Grefenstette, and Raileanu]{kirk24diversity}
+Robert Kirk, Ishita Mediratta, Christoforos Nalmpantis, Jelena Luketina, Eric
+  Hambro, Edward Grefenstette, and Roberta Raileanu.
+\newblock Understanding the effects of rlhf on llm generalisation and
+  diversity.
+\newblock \emph{arXiv preprint arXiv:2310.06452}, 2023.
+
+\bibitem[Lambert et~al.(2024)]{lambert2024tulu3}
+Nathan Lambert et~al.
+\newblock Tulu 3: Pushing frontiers in open language model post-training.
+\newblock \emph{arXiv preprint arXiv:2411.15124}, 2024.
+
+\bibitem[Lanchantin et~al.(2025)]{lanchantin2025divpo}
+Jack Lanchantin et~al.
+\newblock Diverse preference optimization.
+\newblock \emph{arXiv preprint arXiv:2501.18101}, 2025.
+
+\bibitem[Lattimore and Szepesv{\'a}ri(2020)]{lattimore20bandit}
+Tor Lattimore and Csaba Szepesv{\'a}ri.
+\newblock \emph{Bandit Algorithms}.
+\newblock Cambridge University Press, 2020.
+
+\bibitem[Levine(2018)]{levine18control}
+Sergey Levine.
+\newblock Reinforcement learning and control as probabilistic inference:
+  Tutorial and review.
+\newblock \emph{arXiv preprint arXiv:1805.00909}, 2018.
+
+\bibitem[Lightman et~al.(2023)]{lightman2023verify}
+Hunter Lightman et~al.
+\newblock Let's verify step by step.
+\newblock \emph{arXiv preprint arXiv:2305.20050}, 2023.
+
+\bibitem[Liu et~al.(2025{\natexlab{a}})]{liu2025prorl}
+Mingjie Liu et~al.
+\newblock Prorl: Prolonged reinforcement learning expands reasoning boundaries
+  in large language models.
+\newblock \emph{arXiv preprint arXiv:2505.24864}, 2025{\natexlab{a}}.
+
+\bibitem[Liu et~al.(2023)Liu, Lin, Hewitt, Paranjape, Bevilacqua, Petroni, and
+  Liang]{liu24lostmiddle}
+Nelson~F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua,
+  Fabio Petroni, and Percy Liang.
+\newblock Lost in the middle: How language models use long contexts.
+\newblock \emph{arXiv preprint arXiv:2307.03172}, 2023.
+
+\bibitem[Liu et~al.(2025{\natexlab{b}})]{liu2025drgrpo}
+Zichen Liu et~al.
+\newblock Understanding r1-zero-like training: A critical perspective.
+\newblock \emph{arXiv preprint arXiv:2503.20783}, 2025{\natexlab{b}}.
+
+\bibitem[Luong et~al.(2024)]{luong2024reft}
+Trung~Quoc Luong et~al.
+\newblock Reft: Reasoning with reinforced fine-tuning.
+\newblock \emph{arXiv preprint arXiv:2401.08967}, 2024.
+
+\bibitem[Ma et~al.(2025)]{ma2025generalreasoner}
+Xueguang Ma et~al.
+\newblock General-reasoner: Advancing llm reasoning across all domains.
+\newblock \emph{arXiv preprint arXiv:2505.14652}, 2025.
+
+\bibitem[Mangasarian(1969)]{mangasarian69nlp}
+Olvi~L. Mangasarian.
+\newblock \emph{Nonlinear Programming}.
+\newblock McGraw-Hill (SIAM Classics reprint 1994), 1969.
+
+\bibitem[Mei et~al.(2020)Mei, Xiao, Szepesv{\'a}ri, and
+  Schuurmans]{mei20softmax}
+Jincheng Mei, Chenjun Xiao, Csaba Szepesv{\'a}ri, and Dale Schuurmans.
+\newblock On the global convergence rates of softmax policy gradient methods.
+\newblock \emph{arXiv preprint arXiv:2005.06392}, 2020.
+
+\bibitem[Miettinen(1999)]{miettinen99moo}
+Kaisa Miettinen.
+\newblock \emph{Nonlinear Multiobjective Optimization}.
+\newblock Kluwer Academic, 1999.
+
+\bibitem[{Mistral-AI} et~al.(2025){Mistral-AI}, Rastogi,
+  et~al.]{mistral2025magistral}
+{Mistral-AI}, Abhinav Rastogi, et~al.
+\newblock Magistral.
+\newblock \emph{arXiv preprint arXiv:2506.10910}, 2025.
+
+\bibitem[Mohammadi(2024)]{mohammadi2024creativity}
+Behnam Mohammadi.
+\newblock Creativity has left the chat: The price of debiasing language models.
+\newblock \emph{arXiv preprint arXiv:2406.05587}, 2024.
+
+\bibitem[Muennighoff et~al.(2025)]{muennighoff2025s1}
+Niklas Muennighoff et~al.
+\newblock s1: Simple test-time scaling.
+\newblock \emph{arXiv preprint arXiv:2501.19393}, 2025.
+
+\bibitem[Munos et~al.(2023)]{munos24nash}
+R{\'e}mi Munos et~al.
+\newblock Nash learning from human feedback.
+\newblock \emph{arXiv preprint arXiv:2312.00886}, 2023.
+
+\bibitem[Nanda et~al.(2023)Nanda, Chan, Lieberum, Smith, and
+  Steinhardt]{nanda23progress}
+Neel Nanda, Lawrence Chan, Tom Lieberum, Jess Smith, and Jacob Steinhardt.
+\newblock Progress measures for grokking via mechanistic interpretability.
+\newblock \emph{arXiv preprint arXiv:2301.05217}, 2023.
+
+\bibitem[Olsson et~al.(2022)]{olsson22induction}
+Catherine Olsson et~al.
+\newblock In-context learning and induction heads.
+\newblock \emph{arXiv preprint arXiv:2209.11895}, 2022.
+
+\bibitem[Ouyang et~al.(2022)]{ouyang2022instructgpt}
+Long Ouyang et~al.
+\newblock Training language models to follow instructions with human feedback.
+\newblock \emph{arXiv preprint arXiv:2203.02155}, 2022.
+
+\bibitem[Power et~al.(2022)Power, Burda, Edwards, Babuschkin, and
+  Misra]{power22grokking}
+Alethea Power, Yuri Burda, Harri Edwards, Igor Babuschkin, and Vedant Misra.
+\newblock Grokking: Generalization beyond overfitting on small algorithmic
+  datasets.
+\newblock \emph{arXiv preprint arXiv:2201.02177}, 2022.
+
+\bibitem[Rafailov et~al.(2023)Rafailov, Sharma, Mitchell, Ermon, Manning, and
+  Finn]{rafailov23dpo}
+Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D.
+  Manning, and Chelsea Finn.
+\newblock Direct preference optimization: Your language model is secretly a
+  reward model.
+\newblock \emph{arXiv preprint arXiv:2305.18290}, 2023.
+
+\bibitem[Schaeffer et~al.(2023)Schaeffer, Miranda, and
+  Koyejo]{schaeffer23mirage}
+Rylan Schaeffer, Brando Miranda, and Sanmi Koyejo.
+\newblock Are emergent abilities of large language models a mirage?
+\newblock \emph{arXiv preprint arXiv:2304.15004}, 2023.
+
+\bibitem[Schoenberg(1930)]{schoenberg30vdt}
+Isaac~J. Schoenberg.
+\newblock {\"U}ber variationsvermindernde lineare transformationen.
+\newblock \emph{Mathematische Zeitschrift 32, 321-328}, 1930.
+
+\bibitem[Schoenberg(1951)]{schoenberg51pff}
+Isaac~J. Schoenberg.
+\newblock On p{\'o}lya frequency functions. i. the totally positive functions
+  and their laplace transforms.
+\newblock \emph{Journal d'Analyse Math{\'e}matique 1, 331-374}, 1951.
+
+\bibitem[Schulman et~al.(2015)Schulman, Levine, Moritz, Jordan, and
+  Abbeel]{schulman15trpo}
+John Schulman, Sergey Levine, Philipp Moritz, Michael~I. Jordan, and Pieter
+  Abbeel.
+\newblock Trust region policy optimization.
+\newblock \emph{arXiv preprint arXiv:1502.05477}, 2015.
+
+\bibitem[Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
+  Klimov]{schulman2017ppo}
+John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+\newblock Proximal policy optimization algorithms.
+\newblock \emph{arXiv preprint arXiv:1707.06347}, 2017.
+
+\bibitem[Setlur et~al.(2024)]{setlur2024incorrect}
+Amrith Setlur et~al.
+\newblock Rl on incorrect synthetic data scales the efficiency of llm math
+  reasoning by eight-fold.
+\newblock \emph{arXiv preprint arXiv:2406.14532}, 2024.
+
+\bibitem[Shaked and Shanthikumar(2007)]{shaked07stochorders}
+Moshe Shaked and J.~George Shanthikumar.
+\newblock \emph{Stochastic Orders}.
+\newblock Springer, 2007.
+
+\bibitem[Shao et~al.(2025)]{shao2025spurious}
+Rulin Shao et~al.
+\newblock Spurious rewards: Rethinking training signals in rlvr.
+\newblock \emph{arXiv preprint arXiv:2506.10947}, 2025.
+
+\bibitem[Shao et~al.(2024)]{shao2024deepseekmath}
+Zhihong Shao et~al.
+\newblock Deepseekmath: Pushing the limits of mathematical reasoning in open
+  language models.
+\newblock \emph{arXiv preprint arXiv:2402.03300}, 2024.
+
+\bibitem[Snell et~al.(2024)]{snell2024testtime}
+Charlie Snell et~al.
+\newblock Scaling llm test-time compute optimally can be more effective than
+  scaling model parameters.
+\newblock \emph{arXiv preprint arXiv:2408.03314}, 2024.
+
+\bibitem[Stiennon et~al.(2020)]{stiennon20summarize}
+Nisan Stiennon et~al.
+\newblock Learning to summarize from human feedback.
+\newblock \emph{arXiv preprint arXiv:2009.01325}, 2020.
+
+\bibitem[Sutton et~al.(1999)Sutton, McAllester, Singh, and Mansour]{sutton99pg}
+Richard~S. Sutton, David McAllester, Satinder Singh, and Yishay Mansour.
+\newblock Policy gradient methods for reinforcement learning with function
+  approximation.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 1999.
+
+\bibitem[Tomar et~al.(2020)Tomar, Shani, Efroni, and Ghavamzadeh]{tomar22mdpo}
+Manan Tomar, Lior Shani, Yonathan Efroni, and Mohammad Ghavamzadeh.
+\newblock Mirror descent policy optimization.
+\newblock \emph{arXiv preprint arXiv:2005.09814}, 2020.
+
+\bibitem[Uesato et~al.(2022)]{uesato2022process}
+Jonathan Uesato et~al.
+\newblock Solving math word problems with process- and outcome-based feedback.
+\newblock \emph{arXiv preprint arXiv:2211.14275}, 2022.
+
+\bibitem[von Oswald et~al.(2022)]{vonoswald23icl}
+Johannes von Oswald et~al.
+\newblock Transformers learn in-context by gradient descent.
+\newblock \emph{arXiv preprint arXiv:2212.07677}, 2022.
+
+\bibitem[Walder and Karkhanis(2025)]{walder2025passkppo}
+Christian Walder and Deep Karkhanis.
+\newblock Pass@k policy optimization: Solving harder reinforcement learning
+  problems.
+\newblock \emph{arXiv preprint arXiv:2505.15201}, 2025.
+
+\bibitem[Wang et~al.(2024)]{wang2024mathshepherd}
+Peiyi Wang et~al.
+\newblock Math-shepherd: Verify and reinforce llms step-by-step without human
+  annotations.
+\newblock \emph{arXiv preprint arXiv:2312.08935}, 2024.
+
+\bibitem[Wang et~al.(2025)]{wang2025entropytokens}
+Shenzhi Wang et~al.
+\newblock Beyond the 80/20 rule: High-entropy minority tokens drive effective
+  reinforcement learning for llm reasoning.
+\newblock \emph{arXiv preprint arXiv:2506.01939}, 2025.
+
+\bibitem[Wang et~al.(2022)]{wang2022selfconsistency}
+Xuezhi Wang et~al.
+\newblock Self-consistency improves chain of thought reasoning in language
+  models.
+\newblock \emph{arXiv preprint arXiv:2203.11171}, 2022.
+
+\bibitem[Wei et~al.(2022{\natexlab{a}})]{wei2022cot}
+Jason Wei et~al.
+\newblock Chain-of-thought prompting elicits reasoning in large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2201.11903}, 2022{\natexlab{a}}.
+
+\bibitem[Wei et~al.(2022{\natexlab{b}})]{wei22emergent}
+Jason Wei et~al.
+\newblock Emergent abilities of large language models.
+\newblock \emph{arXiv preprint arXiv:2206.07682}, 2022{\natexlab{b}}.
+
+\bibitem[Wei et~al.(2025)]{wei2025swerl}
+Yuxiang Wei et~al.
+\newblock Swe-rl: Advancing llm reasoning via reinforcement learning on open
+  software evolution.
+\newblock \emph{arXiv preprint arXiv:2502.18449}, 2025.
+
+\bibitem[Widder(1941)]{widder41laplace}
+David~Vernon Widder.
+\newblock \emph{The Laplace Transform}.
+\newblock Princeton University Press, 1941.
+
+\bibitem[Wu et~al.(2025)]{wu2025invisibleleash}
+Fang Wu et~al.
+\newblock The invisible leash: Why rlvr may or may not escape its origin.
+\newblock \emph{arXiv preprint arXiv:2507.14843}, 2025.
+
+\bibitem[Wu et~al.(2024)]{wu2024inferencescaling}
+Yangzhen Wu et~al.
+\newblock Inference scaling laws: An empirical analysis of compute-optimal
+  inference for problem-solving with language models.
+\newblock \emph{arXiv preprint arXiv:2408.00724}, 2024.
+
+\bibitem[Xiao et~al.(2023)Xiao, Tian, Chen, Han, and Lewis]{xiao24attnsink}
+Guangxuan Xiao, Yuandong Tian, Beidi Chen, Song Han, and Mike Lewis.
+\newblock Efficient streaming language models with attention sinks.
+\newblock \emph{arXiv preprint arXiv:2309.17453}, 2023.
+
+\bibitem[Xu et~al.(2025)]{xu2025surveyLRM}
+Fengli Xu et~al.
+\newblock Towards large reasoning models: A survey of reinforced reasoning with
+  large language models.
+\newblock \emph{arXiv preprint arXiv:2501.09686}, 2025.
+
+\bibitem[Xu et~al.(2024)Xu, Jain, and Kankanhalli]{xu24hallinevitable}
+Ziwei Xu, Sanjay Jain, and Mohan Kankanhalli.
+\newblock Hallucination is inevitable: An innate limitation of large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2401.11817}, 2024.
+
+\bibitem[Yan et~al.(2025)]{yan2025luffy}
+Jianhao Yan et~al.
+\newblock Learning to reason under off-policy guidance.
+\newblock \emph{arXiv preprint arXiv:2504.14945}, 2025.
+
+\bibitem[Yang et~al.(2024)]{yang2024qwen25math}
+An~Yang et~al.
+\newblock Qwen2.5-math technical report: Toward mathematical expert model via
+  self-improvement.
+\newblock \emph{arXiv preprint arXiv:2409.12122}, 2024.
+
+\bibitem[Yang and Chen(2026)]{yangchen2026kernel}
+Chen Yang and Jun Chen.
+\newblock Rlvr is a kernel, not a function: Statistical inference for pass@k
+  crossovers.
+\newblock \emph{arXiv preprint arXiv:2609.22547}, 2026.
+
+\bibitem[Yu et~al.(2025)]{yu2025dapo}
+Qiying Yu et~al.
+\newblock Dapo: An open-source llm reinforcement learning system at scale.
+\newblock \emph{arXiv preprint arXiv:2503.14476}, 2025.
+
+\bibitem[Yu(2025)]{yu2025passkdiagnostic}
+Yang Yu.
+\newblock Pass@k metric for rlvr: A diagnostic tool of exploration, but not an
+  objective.
+\newblock \emph{arXiv preprint arXiv:2511.16231}, 2025.
+
+\bibitem[Yuan et~al.(2023)]{yuan2023rft}
+Zheng Yuan et~al.
+\newblock Scaling relationship on learning mathematical reasoning with large
+  language models.
+\newblock \emph{arXiv preprint arXiv:2308.01825}, 2023.
+
+\bibitem[Yue et~al.(2025)]{yue2025rlincentivize}
+Yang Yue et~al.
+\newblock Does reinforcement learning really incentivize reasoning capacity in
+  llms beyond the base model?
+\newblock \emph{arXiv preprint arXiv:2504.13837}, 2025.
+
+\bibitem[Zelikman et~al.(2022)Zelikman, Wu, Mu, and Goodman]{zelikman2022star}
+Eric Zelikman, Yuhuai Wu, Jesse Mu, and Noah~D. Goodman.
+\newblock Star: Bootstrapping reasoning with reasoning.
+\newblock \emph{arXiv preprint arXiv:2203.14465}, 2022.
+
+\bibitem[Zeng et~al.(2025)]{zeng2025simplerl}
+Weihao Zeng et~al.
+\newblock Simplerl-zoo: Investigating and taming zero reinforcement learning
+  for open base models in the wild.
+\newblock \emph{arXiv preprint arXiv:2503.18892}, 2025.
+
+\bibitem[Zhang et~al.(2025{\natexlab{a}})]{zhang2025verbalized}
+Jiayi Zhang et~al.
+\newblock Verbalized sampling: How to mitigate mode collapse and unlock llm
+  diversity.
+\newblock \emph{arXiv preprint arXiv:2510.01171}, 2025{\natexlab{a}}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{b}})]{zhang2025surveyRL}
+Kaiyan Zhang et~al.
+\newblock A survey of reinforcement learning for large reasoning models.
+\newblock \emph{arXiv preprint arXiv:2509.08827}, 2025{\natexlab{b}}.
+
+\bibitem[Zhang et~al.(2025{\natexlab{c}})]{zhang2025prmlessons}
+Zhenru Zhang et~al.
+\newblock The lessons of developing process reward models in mathematical
+  reasoning.
+\newblock \emph{arXiv preprint arXiv:2501.07301}, 2025{\natexlab{c}}.
+
+\bibitem[Zhao et~al.(2025{\natexlab{a}})]{zhao2025absolutezero}
+Andrew Zhao et~al.
+\newblock Absolute zero: Reinforced self-play reasoning with zero data.
+\newblock \emph{arXiv preprint arXiv:2505.03335}, 2025{\natexlab{a}}.
+
+\bibitem[Zhao et~al.(2025{\natexlab{b}})]{zhao2025echochamber}
+Rosie Zhao et~al.
+\newblock Echo chamber: Rl post-training amplifies behaviors learned in
+  pretraining.
+\newblock \emph{arXiv preprint arXiv:2504.07912}, 2025{\natexlab{b}}.
+
+\bibitem[Zhou(2026)]{zhou2026shrink}
+Todd~Y. Zhou.
+\newblock When rlvr shrinks the reasoning boundary: Diagnosing pass@k
+  inversion.
+\newblock \emph{arXiv preprint arXiv:2607.20543}, 2026.
+
+\bibitem[Zhu et~al.(2023)Zhu, Jordan, and Jiao]{zhu23principled}
+Banghua Zhu, Michael~I. Jordan, and Jiantao Jiao.
+\newblock Principled reinforcement learning with human feedback from pairwise
+  or k-wise comparisons.
+\newblock \emph{arXiv preprint arXiv:2301.11270}, 2023.
+
+\end{thebibliography}

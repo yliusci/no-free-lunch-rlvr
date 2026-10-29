@@ -1,0 +1,17 @@
+{
+  "depth": 12,
+  "d_strategy": 4,
+  "n_strategies": 16,
+  "within_family_leaves": 256,
+  "strategy_entropy_base": 2.772588722239781,
+  "strategy_entropy_rl": 2.141972772061565,
+  "token_entropy_base": 6.850291296598769,
+  "token_entropy_rl": 7.2732960265626705,
+  "within_term_base": 4.077702574358987,
+  "within_term_rl": 5.131323254501106,
+  "strategy_entropy_drop": 0.6306159501782163,
+  "token_entropy_drop": -0.4230047299639015,
+  "token_entropy_rose": true,
+  "decoupling_token_drop_lt_strategy_drop": true,
+  "note": "within-family term rises as RL concentrates on broad-family winner; token entropy decouples from strategy entropy -> law stated at strategy level"
+}

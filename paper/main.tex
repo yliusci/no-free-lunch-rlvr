@@ -1,0 +1,67 @@
+% Combined preview: "There Is No Free Lunch in RLVR: Every pass@1 Gain Has a
+% pass@k Price" -- Sections 1 and 2. Author: Yinuo Liu. NeurIPS template later.
+\documentclass{article}
+\usepackage[preprint]{neurips_2024}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\graphicspath{{../figures/}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\theoremstyle{definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{definition}{Definition}
+
+\newcommand{\simplex}{\Delta^{M-1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\inner}[2]{\langle #1, #2\rangle}
+\newcommand{\pass}{\mathrm{pass}}
+\newcommand{\PassK}{\mathrm{Pass}}
+\newcommand{\Dkl}{\mathrm{KL}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\Svar}{S^{-}}
+\newcommand{\wz}{w_0}
+\newcommand{\wt}{w_\tau}
+
+\title{There Is No Free Lunch in RLVR:\\ Every pass@1 Gain Has a pass@k Price}
+\author{Yinuo Liu}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Reinforcement learning with verifiable rewards (RLVR) raises pass@1 while the
+base model overtakes it at large sampling budget $k$. We show this reversal is a
+price, not an artifact, and we compute its rate. Modeling RLVR as an exponential
+tilt of a base distribution over strategies shared across prompts, we prove that
+when strategies specialize exclusively, every update that raises pass@1 lowers the
+success of some prompt, with a theorem of the alternative giving the exact
+condition, a strictly positive price on prompts. When the loss reaches the hardest, finely covered prompts it forces a
+pass@$k$ crossover, and the number of crossings is at most the sign variation of
+the shift in per-prompt success, a totally positive bound that is tight and that
+recovers the known single-crossover theorem as the order-preserving case. The
+same identity yields entropy collapse and the entropy-performance law with an
+identifiable exponent. A constrained update that forbids per-prompt regression
+traces the optimal pass@1 versus pass@$k$ frontier; removing the crossover
+entirely costs the entire pass@1 gain. There is no free lunch, only a price, and
+a diagnostic that reads it from any evaluation log.
+\end{abstract}
+\input{sec6_body}
+\input{sec1_body}
+\input{sec2_body}
+\input{sec3_body}
+\input{sec4_body}
+\input{sec5_body}
+\bibliographystyle{plainnat}
+\bibliography{references}
+\input{sec7_body}
+\end{document}

@@ -1,0 +1,17 @@
+{
+  "exact_flow": {
+    "N": 500,
+    "modes": 12,
+    "n_correct": 3,
+    "steps": 400,
+    "min_p_increment_any_prompt_any_step": -3.3306690738754696e-16,
+    "min_pT_minus_p0_over_prompts": 0.5157116769505259,
+    "delta_k_min_over_k": 0.0,
+    "n_passk_crossings": 0
+  },
+  "stochastic_caveat": {
+    "G": 4,
+    "N": 300,
+    "frac_prompts_ever_dipped": 0.0
+  }
+}

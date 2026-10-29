@@ -1,0 +1,55 @@
+% ============================================================================
+% neurips_2024.sty -- PLACEHOLDER, NOT the official NeurIPS style file.
+% Provided only so this package compiles anywhere. It approximates the NeurIPS
+% preprint look (Times, 5.5in column, ruled abstract). BEFORE SUBMISSION,
+% download the official neurips_2024.sty from https://neurips.cc and REPLACE
+% this file. Options [preprint]/[final] accepted and ignored except as noted.
+% ============================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{neurips_2024}[2024/01/01 PLACEHOLDER NeurIPS-like style]
+
+\newif\if@nips@preprint\@nips@preprintfalse
+\DeclareOption{preprint}{\@nips@preprinttrue}
+\DeclareOption{final}{\@nips@preprinttrue}
+\DeclareOption*{}
+\ProcessOptions\relax
+
+\RequirePackage{geometry}
+\geometry{letterpaper, textwidth=5.5in, textheight=9in, top=1in, headheight=12pt}
+\RequirePackage{mathptmx}       % Times for text and math (approximation)
+\RequirePackage[scaled=0.92]{helvet}
+\renewcommand{\familydefault}{\rmdefault}
+
+\setlength{\parindent}{12pt}
+\setlength{\parskip}{0pt}
+\frenchspacing
+
+% ---- title / author block ----
+\renewcommand{\maketitle}{%
+  \begin{center}%
+    {\bfseries\large\@title\par}%
+    \vskip 1.2em%
+    {\normalsize\@author\par}%
+    \vskip 0.8em%
+  \end{center}%
+  \vskip 0.5em%
+}
+
+% ---- abstract: centered heading, narrower margins, rules ----
+\renewenvironment{abstract}{%
+  \centerline{\bfseries Abstract}%
+  \vspace{0.4em}%
+  \begin{list}{}{\setlength{\leftmargin}{0.5in}\setlength{\rightmargin}{0.5in}}%
+  \item[]\small%
+}{%
+  \end{list}\vspace{0.6em}%
+}
+
+% ---- section headings ----
+\RequirePackage{titlesec}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.2em}{0.4em}
+\titlespacing*{\subsection}{0pt}{0.9em}{0.3em}
+
+\endinput

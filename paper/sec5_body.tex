@@ -1,0 +1,130 @@
+\section{Related work}
+\label{sec:related}
+
+The result sits at the intersection of three lines: the RLVR reasoning-boundary
+debate, the theory of entropy and concentration in policy optimization, and the
+sign-variation geometry of totally positive kernels. We review each, then mark
+the boundary with the two concurrent manuscripts precisely.
+
+\paragraph{RLVR algorithms and systems.}
+Reinforcement learning with verifiable rewards grew out of policy-gradient and
+RLHF pipelines \citep{schulman2017ppo,ouyang2022instructgpt,ahmadian2024rloo,hu2025reinforceplusplus,kazemnejad2024vineppo}
+and was crystallized by GRPO and the DeepSeek line
+\citep{shao2024deepseekmath,deepseekai2025r1,yu2025dapo,liu2025drgrpo}, the term
+itself fixed in \citep{lambert2024tulu3}. Open ``zero'' recipes train from the
+base model without supervised warmup
+\citep{hu2025orz,zeng2025simplerl,zhao2025absolutezero,yan2025luffy,luong2024reft},
+and large system reports scale the setup
+\citep{kimiteam2025k15,he2025skywork,mistral2025magistral,bercovich2025llamanemotron,yang2024qwen25math,wei2025swerl,khatri2025scalerl}.
+Rewards come from outcome checkers and process models
+\citep{cobbe2021gsm8k,uesato2022process,lightman2023verify,wang2024mathshepherd,zhang2025prmlessons,ma2025generalreasoner};
+recent surveys map the area \citep{xu2025surveyLRM,zhang2025surveyRL}. None states
+a pass@$k$ crossing count or a per-prompt no-free-lunch condition.
+
+\paragraph{The phenomenon and the debate.}
+\citet{yue2025rlincentivize} report that RLVR raises pass@1 while the base model
+overtakes it at large $k$ and read the reversal as reweighting rather than new
+capability; \citet{liu2025prorl} argue prolonged RL expands the boundary and
+keeps the trained model ahead; \citet{zhou2026shrink} diagnoses the inversion and
+proposes a diversity intervention. A cluster of work reads RL as amplifying or
+sharpening base behavior rather than adding it
+\citep{zhao2025echochamber,setlur2024incorrect,huang2024sharpening,shao2025spurious,wu2025invisibleleash}.
+Reward hacking and chain-of-thought obfuscation are documented failure modes of the same optimization \citep{baker2025monitoring}. Our Theorem \ref{thm:price} adjudicates: the crossover is forced when the loss
+reaches a finely covered hard tail (Assumption \ref{ass:fine}) and absent
+otherwise, so the Yue and ProRL observations are two sides of one conditional
+statement.
+
+\paragraph{pass@$k$, sampling, and test-time compute.}
+The pass@$k$ metric originates with code evaluation \citep{chen2021codex}, and
+sampling-based inference spans self-consistency and its universal form
+\citep{wang2022selfconsistency,chen2023universalsc}, repeated sampling and
+inference scaling \citep{brown2024monkeys,snell2024testtime,wu2024inferencescaling,muennighoff2025s1},
+and best-of-$N$ alignment \citep{amini2024variationalbon,dong2023raft}. A recent
+line optimizes pass@$k$ directly or debates it as an objective
+\citep{walder2025passkppo,chen2025passktraining,yu2025passkdiagnostic,gui2025inferenceobj}.
+Chain-of-thought and bootstrapped reasoning are the substrate
+\citep{wei2022cot,zelikman2022star,yuan2023rft}. We do not optimize the metric;
+we bound how the base-to-RL shift can move the curve and price the move.
+
+\paragraph{Entropy, exploration, and diversity.}
+Entropy collapse and its exploitation are central to RLVR dynamics
+\citep{cui2025entropy,agarwal2025entropymin,wang2025entropytokens}, extending the
+maximum-entropy tradition \citep{haarnoja2018sac}. Alignment is known to narrow
+output diversity and induce mode collapse
+\citep{kirk24diversity,mohammadi2024creativity,lanchantin2025divpo,zhang2025verbalized,jiang2025hivemind}.
+These describe or counter concentration; the per-prompt accounting and the
+crossing bound are new here.
+
+\paragraph{RLHF and preference-optimization theory.}
+The reward-model and preference-learning foundations
+\citep{bradleyterry52,christiano17,stiennon20summarize,rafailov23dpo,azar24ipo,ethayarajh24kto,zhu23principled,munos24nash}
+and the Goodhart limit of reward optimization \citep{gao23overopt} frame RL as a
+one-step contextual bandit, the view we take. Our no-free-lunch duality is a
+Pareto statement on the strategy simplex, which these do not address.
+
+\paragraph{Policy-gradient theory.}
+The tilt identity rests on policy-gradient and mirror-descent analysis
+\citep{sutton99pg,kakade01npg,agarwal21pgtheory,tomar22mdpo,mei20softmax,schulman15trpo},
+control-as-inference \citep{levine18control}, and the bandit view
+\citep{lattimore20bandit}.
+
+\paragraph{Named-phenomenon theory, for positioning.}
+Pure-theory explanations of named LLM phenomena are the archetype this paper
+follows: hallucination
+\citep{kalai25hallucinate,xu24hallinevitable}, superposition and in-context
+learning \citep{elhage22superposition,vonoswald23icl,olsson22induction}, grokking
+\citep{power22grokking,nanda23progress}, emergence and its critique
+\citep{wei22emergent,schaeffer23mirage}, and positional and attention effects
+\citep{liu24lostmiddle,xiao24attnsink}.
+
+\paragraph{Mathematical tools.}
+The crossing bound is a variation-diminishing property of totally positive
+kernels \citep{karlin68tp,schoenberg51pff,schoenberg30vdt,karlinstudden66}, with
+the exponential-sum sign count going back to Descartes' rule
+\citep{jameson06descartes} and Laplace-transform sign changes
+\citep{widder41laplace}; the no-free-lunch condition is a Pareto statement proved
+by a theorem of the alternative \citep{mangasarian69nlp,miettinen99moo}, and the
+frontier uses stochastic dominance \citep{shaked07stochorders}. The novelty is
+the target, not the tools: pricing pass@1 against per-prompt success and bounding
+pass@$k$ crossings by $\Svar(G)$.
+
+\section{Concurrent work}
+\label{sec:concurrent}
+
+Two manuscripts from the last two months are the nearest neighbors; the overlap
+is partial and real.
+
+\paragraph{Yang and Chen, ``RLVR is a Kernel, Not a Function''
+\citep{yangchen2026kernel}.}
+They build statistical inference for pass@$k$ crossovers and prove, in the
+\emph{function} case with zero latent-failure mass, a single interior fixed
+point, and a side-preserving map, that the advantage changes sign at most once
+(their Theorem 3). They note multiple crossings become possible once the map is a
+kernel or the failure mass is positive, and leave that case without a bound
+(their Remark 1), framing two supported sign changes as a falsification of the
+single-fixed-point class. Our Theorem \ref{thm:price}(a) supplies the missing
+bound: for \emph{any} shift the number of crossings is at most $\Svar(G)$,
+kernels included, and it is tight; their single-crossing theorem is our
+order-preserving corollary \ref{thm:price}(d). Our no-free-lunch result (Theorem
+\ref{thm:nfl}) and the price frontier (Theorem \ref{thm:frontier}) have no
+counterpart in their work. Their prompts are independent given a common map; our
+strategies are shared across prompts, the microfoundation of the kernel
+dispersion they posit.
+
+\paragraph{``Winner-Take-All'' (ICLR 2027 submission S4R2zYtFhs).}
+They study the entropy side of the same tilt in a finite-mode, single-prompt
+mean-field model: the exact entropy-mass curve, the shifted-exponential as a
+finite-window approximation with error bounds, a proof that the terminal law is
+not exponential, and the collapse of correct-mode entropy to a single winner. We
+claim none of these. Our entropy statements (Theorem \ref{thm:tiltlaw}, the
+lemmas) are the strategy-level, mesoscopic context that links their entropy side
+to our pass@$k$ side through one tilt identity; where they overlap, priority is
+theirs. Their model has one prompt and many modes; ours has many prompts sharing
+strategies, which is what makes pass@$k$ well defined.
+
+\paragraph{Summary.}
+The crossover's statistics \citep{yangchen2026kernel} and the entropy trajectory
+(Winner-Take-All) are concurrent. This paper adds the general crossing bound with
+tightness, the per-prompt no-free-lunch condition with its Farkas exchange rate,
+the forced-crossover result under fine coverage with its counterexample, and the
+price frontier. The unifying object is the shared-strategy tilt.

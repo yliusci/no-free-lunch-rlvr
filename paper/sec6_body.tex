@@ -1,0 +1,69 @@
+\section{Introduction}
+\label{sec:intro}
+
+Reinforcement learning with verifiable rewards (RLVR) makes a language model
+solve more problems on the first try and fewer problems when given many tries:
+it raises pass@1 while the base model catches up and overtakes it at large
+sampling budget $k$ \citep{yue2025rlincentivize}. Whether this means RLVR fails to
+add reasoning, or only needs more training to pull ahead \citep{liu2025prorl},
+has been argued from curves. We settle it with a theorem. The reversal is
+neither a failure nor a transient: it is a \emph{price}, and we compute the
+exchange rate at which it is paid.
+
+We model RLVR as what it is in the population limit, an exponential tilt of a
+base distribution over solution strategies that are shared across prompts. One
+identity then drives the two phenomena that have been studied apart. On the
+strategy simplex, probability is conserved, so reinforcement spends it. When
+strategies specialize, each is the only route to some prompts, and the spending
+is visible at the level of prompts. This yields a sharp dichotomy. \emph{Every}
+update that raises pass@1 lowers the success of some prompt (Theorem
+\ref{thm:nfl}); there is no free lunch, and a theorem of the alternative gives
+the exact condition, a strictly positive price on prompts that equalizes strategy
+fitness. \emph{When} that loss reaches the hardest,
+finely covered prompts, it forces the pass@$k$ crossover (Theorem
+\ref{thm:price}), and the number of times the curves can cross is bounded by the
+sign changes of the shift in per-prompt success, a totally positive argument
+that is tight. The same tilt yields entropy collapse and the
+entropy-performance law with an identifiable exponent (Theorem
+\ref{thm:tiltlaw}). In particular, no update both raises pass@1 and dominates the
+base pass@$k$ curve at every $k$: reinforcement cannot widen the reasoning
+frontier, it can only move along it. That is the exact sense in which RLVR does
+not incentivize reasoning beyond the base model, and the sense in which, under a
+single named exception, it can.
+
+The price is not a bug to be patched. A constrained update that forbids any
+prompt from regressing removes the crossover exactly, and under specialization
+it also removes the pass@1 gain: the only way to pay nothing is to gain nothing.
+Between the extremes lies a frontier (Theorem \ref{thm:frontier}), the exact
+exchange rate between pass@1 and pass@$k$, which an optimal per-prompt floor
+traces out. A diversity bonus helps both metrics only when the unmodified update
+was off this frontier, which is what the frontier predicts.
+
+\paragraph{Contributions.}
+\begin{itemize}
+\item \textbf{No free lunch (Theorem \ref{thm:nfl}).} Under exclusive (or dominant) specialization,
+every pass@1-increasing update lowers some prompt's success. We give the exact
+Stiemke condition and show the hypothesis is sharp: unique-best is insufficient
+(a worked counterexample) and a dominating strategy restores a
+free lunch.
+\item \textbf{The crossing bound (Theorem \ref{thm:price}a,b).} For any
+base-to-RL shift, the number of pass@$k$ crossings is at most the sign variation
+of the success-CDF difference; the bound is tight. This is the general statement
+that concurrent work leaves open for the kernel case.
+\item \textbf{Forced crossover and its scope (Theorem \ref{thm:price}c--e).}
+Under a named fine-coverage condition the crossover is forced; without it there
+is a per-prompt loss but no crossover. The order-preserving case recovers the
+known single-crossover theorem as a corollary.
+\item \textbf{The price frontier (Theorem \ref{thm:frontier}).} The optimal
+pass@1 versus pass@$k$ exchange rate, with a closed form for two strategies.
+\item \textbf{A diagnostic.} A tool that takes only per-prompt base and RL success
+rates, available in any evaluation log, and returns the bound, the
+order-preserving test, and the price. We read published curves through it and
+find the predicted structure.
+\end{itemize}
+
+The claims are stated at the level of the model and proved in the appendix; every
+number is produced and checked by an accompanying package. We do not claim
+anything about a specific language model beyond what published curves show. The
+message is one line: in RLVR there is no free lunch, only a price, and we give
+its rate.

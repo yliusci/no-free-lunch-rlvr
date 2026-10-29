@@ -1,0 +1,51 @@
+{
+  "stochastic_confounded": {
+    "2": {
+      "n_crossed": 6,
+      "median_kstar": 14.0
+    },
+    "4": {
+      "n_crossed": 6,
+      "median_kstar": 11.0
+    },
+    "8": {
+      "n_crossed": 6,
+      "median_kstar": 8.0
+    },
+    "16": {
+      "n_crossed": 6,
+      "median_kstar": 6.0
+    },
+    "64": {
+      "n_crossed": 6,
+      "median_kstar": 4.0
+    }
+  },
+  "matched_concentration": {
+    "2": {
+      "n_crossed": 8,
+      "frozen_frac_approx": 0.5713323987672987,
+      "median_kstar": 9.0
+    },
+    "4": {
+      "n_crossed": 8,
+      "frozen_frac_approx": 0.3314574979250226,
+      "median_kstar": 9.0
+    },
+    "8": {
+      "n_crossed": 8,
+      "frozen_frac_approx": 0.11650718765146903,
+      "median_kstar": 8.5
+    },
+    "16": {
+      "n_crossed": 8,
+      "frozen_frac_approx": 0.01663435098123141,
+      "median_kstar": 8.0
+    },
+    "64": {
+      "n_crossed": 8,
+      "frozen_frac_approx": 5.76261173233797e-07,
+      "median_kstar": 8.0
+    }
+  }
+}

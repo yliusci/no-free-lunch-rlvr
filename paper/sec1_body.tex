@@ -1,0 +1,273 @@
+\section{Model and results}
+\label{sec:model}
+
+Reinforcement learning with verifiable rewards (RLVR) raises a base model's
+pass@1, yet at large sampling budgets $k$ the base model catches up and
+overtakes it. This reversal has been read as evidence that RLVR only sharpens
+existing ability rather than adding reasoning (Yue et al., 2504.13837, ``Does
+RL Really Incentivize Reasoning''). We give it an exact reading: the reversal is
+a \emph{price}, and we compute its exchange rate. Modeling RLVR as an
+exponential tilt over strategies shared across prompts, we prove that once
+strategies specialize, every update that raises pass@1 must lower the success of
+some prompt, with a theorem of the alternative supplying the exact condition (Theorem
+\ref{thm:nfl}); that when the loss reaches the hardest prompts it forces the
+pass@$k$ crossover, whose number is bounded by the sign changes of the shift in
+per-prompt success (Theorem \ref{thm:price}); and that a constrained update
+traces the optimal pass@1 versus pass@$k$ frontier (Theorem \ref{thm:frontier}).
+There is no free lunch, only a price. We state the model and all results here;
+proofs are in the appendix, and every numerical constant is produced and checked
+by the accompanying package.
+
+\paragraph{Setup.}
+A base policy is refined by reinforcement learning with verifiable rewards
+(RLVR). We model the object that RLVR moves as a distribution over
+\emph{solution strategies} that are shared across prompts. There are $M$
+strategies and a prompt distribution $\mathcal{D}$ on a finite set of $N$
+prompts. For a prompt $x$ and a strategy $j\in[M]$, let
+\begin{equation}
+q_{xj}\in[0,1]
+\quad\text{be the probability that strategy $j$ solves prompt $x$,}
+\qquad Q=(q_{xj})\in[0,1]^{N\times M}.
+\end{equation}
+A policy is a point $w\in\simplex$ on the strategy simplex. Drawing one strategy
+$j\sim w$ and solving $x$ with probability $q_{xj}$, the per-prompt success
+probability and the mean (pass@1) success are
+\begin{equation}
+p_x(w)=\inner{w}{q_x}=\sum_{j}w_j q_{xj},
+\qquad
+\pass@1(w)=\E_{x\sim\mathcal{D}}\,p_x(w)=\inner{w}{f},
+\quad
+f_j:=\E_{x\sim\mathcal{D}}\,q_{xj}.
+\end{equation}
+Here $q_x=(q_{x1},\dots,q_{xM})$ is the $x$-th row of $Q$ and $f=\E_x q_x$ is the
+vector of \emph{marginal fitnesses}. With $k$ independent samples from the
+policy, the pass@$k$ of prompt $x$ and its average are
+\begin{equation}
+\pass@k(x;w)=1-(1-p_x(w))^k,
+\qquad
+\PassK_k(w)=\E_{x}\big[1-(1-p_x(w))^k\big].
+\end{equation}
+We write $s_x=-\log(1-p_x)\in[0,\infty)$; hard prompts have small $p_x$, hence
+small $s_x$, and the large-$k$ behavior of $\PassK_k$ is governed by the small-$s$
+(hardest) prompts through $(1-p)^k=e^{-ks}$.
+
+\paragraph{The RLVR update.}
+GRPO and its relatives subtract a group baseline and rescale by the group
+standard deviation, then push probability toward above-baseline strategies. In
+the population limit, with a KL anchor to the base, the idealized update is
+mirror descent / natural policy gradient on the strategy logits. Theorem
+\ref{thm:tilt} identifies the resulting policy as an exponential tilt of the
+base. Throughout, $\wz\in\mathrm{int}\,\simplex$ denotes the base policy and
+$\wt$ the policy after internal training time $\tau\ge 0$.
+
+\paragraph{Comparison objects.}
+For a base policy $\wz$ and a trained policy $\wt$, write
+$F_0,F_\tau$ for the cumulative distribution functions of the per-prompt
+success values $\{p_x(\wz)\}$ and $\{p_x(\wt)\}$ under $\mathcal{D}$, and
+\begin{equation}
+G(p)=F_\tau(p)-F_0(p),
+\qquad
+\Delta_k=\PassK_k(\wt)-\PassK_k(\wz).
+\end{equation}
+A \emph{pass@$k$ crossover} is a sign change of $k\mapsto\Delta_k$. We write
+$\Svar(\cdot)$ for the number of sign changes of a sequence or function.
+
+\subsection{Assumptions}
+
+\begin{assumption}[Exclusive specialization]
+\label{ass:spec}
+Each strategy is the sole solver of a set of prompts of positive mass: for each
+$j\in[M]$ there is a set $X_j^{\mathrm{excl}}$ with
+$\mathcal{D}(X_j^{\mathrm{excl}})>0$ such that $q_{xj}>0$ and $q_{xj'}=0$ for all
+$j'\ne j$ on $X_j^{\mathrm{excl}}$.
+\end{assumption}
+
+Exclusivity, not mere being-best, is what makes probability a scarce resource:
+moving mass off $j$ strictly lowers the prompts only $j$ can solve. Being the
+\emph{unique best} is \emph{not} enough, because a near-generalist can absorb the
+mass without hurting any prompt; we record this as Proposition
+\ref{prop:uniquebest}. A realistic version without exact zeros, used in the
+experiments, is dominant specialization: for each $j$ a positive-mass set with
+$q_{xj}\ge d$ and $q_{xj'}\le\varepsilon$ for $j'\ne j$, with
+$(M-1)\varepsilon<d/2$; it is sufficient (Theorem \ref{thm:nfl}(b$'$)).
+
+\begin{assumption}[Fine coverage]
+\label{ass:fine}
+The prompts of minimal base success $x^\star\in\arg\min_x p_x(\wz)$ are covered
+only by strategies of below-base-average fitness: $q_{x^\star j}>0\Rightarrow
+f_j<R_0$, where $R_0=\pass@1(\wz)=\inner{\wz}{f}$ is the base pass@1.
+\end{assumption}
+
+Because the tilt multiplies $w_{0,j}$ by $e^{\tau(f_j-\Lambda(\tau)/\tau)}$ with
+$\Lambda(\tau)=\log\E_{\wz}e^{\tau f}$, a strategy loses mass iff
+$f_j<\Lambda(\tau)/\tau$, and Jensen gives $\Lambda(\tau)/\tau\ge R_0$ for all
+$\tau>0$. Hence under Assumption \ref{ass:fine} every strategy covering $x^\star$
+loses mass, so $p_{x^\star}(\wt)<p_{x^\star}(\wz)=\min_x p_x(\wz)$. (The looser
+threshold $f_j<R(\tau)$, the \emph{tilted} mean, is wrong: a strategy with
+$R_0<f_j<\Lambda(\tau)/\tau$ gains mass though $f_j<R(\tau)$; see the appendix.)
+Assumption \ref{ass:spec} forces a per-prompt loss (Theorem \ref{thm:nfl});
+Assumption \ref{ass:fine} routes it to the hardest prompt and thereby forces an
+aggregate crossover (Theorem \ref{thm:price}). The two must not be conflated:
+the per-prompt loss is unconditional under \ref{ass:spec}, the crossover is
+conditional on \ref{ass:fine}, and \ref{thm:price}(e) is the regime where
+\ref{ass:fine} fails and no crossover forms.
+
+\subsection{Statements}
+
+\begin{theorem}[Tilt identity]
+\label{thm:tilt}
+Under mirror descent / natural policy gradient on the strategy logits with a KL
+anchor of strength $\beta$ and binary verifiable reward, the policy at internal
+time $\tau$ is the exponential tilt
+\begin{equation}
+\wt \;\propto\; \wz\,\exp(\tau f),
+\qquad
+w_{\tau,j}=\frac{w_{0,j}\,e^{\tau f_j}}{\sum_{\ell}w_{0,\ell}\,e^{\tau f_\ell}} .
+\end{equation}
+This is exact for mirror descent / natural policy gradient.
+\end{theorem}
+
+\begin{proposition}[GRPO stays near the tilt]
+\label{prop:grpo}
+For GRPO with the group non-degeneracy factor $1-p^G-(1-p)^G$, the policy stays
+within total variation $O(\delta)$ of the best-fit tilt at matched concentration,
+where $\delta$ is the variation of the group standard-deviation rescaling over the
+trajectory. We do not optimize the constant; the package measures this total
+variation below $3\times10^{-4}$ over the tested range, and records the
+finite-group transient non-monotonicity separately.
+\end{proposition}
+
+\begin{theorem}[No free lunch]
+\label{thm:nfl}
+A \emph{free lunch} at an interior $w$ is a tangent $\mathrm{d}w$
+($\mathbf 1^\top\mathrm{d}w=0$) with $Q\,\mathrm{d}w\ge0$ and $Q\,\mathrm{d}w\ne0$;
+since $\inner f{\mathrm{d}w}=\tfrac1N\mathbf 1^\top Q\,\mathrm{d}w$, this is a
+pass@1 gain with no prompt regressing. Whether one exists does not depend on $w$.
+\begin{enumerate}
+\item[(a)] \emph{(Exact condition, Stiemke.)} No free lunch exists if and only if
+there are strictly positive prompt prices $y\in\R^{N}_{>0}$ and $\mu\in\R$ with
+\begin{equation}
+\label{eq:farkas}
+\sum_x y_x\,q_{xj}=\mu\qquad\text{for all } j\in[M],
+\end{equation}
+a strictly positive reweighting of prompts under which all strategies have equal
+weighted fitness. (Equivalently, since $f=\tfrac1N\sum_x q_x$, there exist
+$y'\ge0,\mu'$ with $f_j+\sum_x y'_x q_{xj}=\mu'$.)
+\item[(b)] \emph{(Exclusive specialization suffices.)} Under Assumption
+\ref{ass:spec} no free lunch exists: any $\mathrm{d}w$ with $\mathrm{d}w_j<0$
+strictly lowers $X_j^{\mathrm{excl}}$, so every pass@1 gain lowers some prompt.
+\item[(b$'$)] \emph{(Dominant specialization suffices.)} If for each $j$ there is a
+positive-mass set with $q_{xj}\ge d$ and $q_{xj'}\le\varepsilon$ ($j'\ne j$) and
+$(M-1)\varepsilon<d/2$, then \eqref{eq:farkas} is feasible with $y>0$ and no free
+lunch exists.
+\item[(c)] \emph{(Necessity.)} If some strategy dominates all others
+($q_{xj^\star}\ge q_{xj}$ for all $x,j$), concentrating on it raises every $p_x$:
+a free lunch.
+\end{enumerate}
+\end{theorem}
+
+\begin{proposition}[Unique-best is insufficient]
+\label{prop:uniquebest}
+Being the unique best scorer on a positive-mass set does not prevent a free lunch.
+For $Q=\begin{psmallmatrix}1&0.9&0.96\\0.9&1&0.96\\0.5&0.5&1\end{psmallmatrix}$
+each strategy is the unique best on its prompt, yet
+$\mathrm{d}w=(-0.6,-0.4,1)$ gives $Q\,\mathrm{d}w=(0,0.02,0.5)\ge0$ and
+$\inner f{\mathrm{d}w}=+0.173$: a free lunch, and \eqref{eq:farkas} is infeasible.
+\end{proposition}
+
+\begin{theorem}[The pass@$k$ price]
+\label{thm:price}
+Let $\wz,\wt$ be a base and a trained policy with success-CDF difference $G$.
+\begin{enumerate}
+\item[(a)] \emph{(Crossing bound.)} The number of pass@$k$ crossings is bounded
+by the sign variation of $G$:
+\begin{equation}
+\Svar\big(k\mapsto\Delta_k\big)\;\le\;\Svar(G),
+\end{equation}
+because $\Delta_k=-k\int_0^1 (1-p)^{k-1}G(p)\,\mathrm{d}p$ and the kernel
+$k(1-p)^{k-1}$ is totally positive in $(k,p)$ (Karlin variation diminishing).
+\item[(b)] \emph{(Tightness.)} For every $m\ge 0$ there is a configuration with
+exactly $m$ crossings; the bound is attained.
+\item[(c)] \emph{(Forced crossover.)} Under Assumptions \ref{ass:spec} and
+\ref{ass:fine}, any pass@1-increasing tilt has $p_{x^\star}(\wt)<\min_x p_x(\wz)$,
+hence $\Delta_k<0$ for all sufficiently large $k$: a crossover is forced, and its
+count obeys (a).
+\item[(d)] \emph{(Uniqueness; recovers prior work.)} If the trained policy
+preserves the difficulty order of prompts, $p_x(\wt)=\phi(p_x(\wz))$ for an
+increasing $\phi$, then $\Svar(G)\le 1$ and there is at most one crossing. This
+recovers the single-crossover regime of Yang and Chen (2609.22547, Thm.~3) as a
+corollary.
+\item[(e)] \emph{(Counterexample.)} Without Assumption \ref{ass:fine}, the loss
+need not reach the hard tail and no crossover occurs, even though a per-prompt
+loss does; this regime bounds the scope of (c) and makes the result
+falsifiable.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Price frontier]
+\label{thm:frontier}
+For $\gamma\in[0,1]$, let $w(\gamma)$ maximize $\pass@1$ subject to the
+per-prompt floor $p_x(w)\ge\gamma\,p_x(\wz)$ for all $x$. The map
+$\gamma\mapsto\big(\pass@1\text{ gain},\,k^\star\big)$ is monotone: $\gamma=0$
+recovers the unconstrained gain with the earliest crossing, and $\gamma=1$
+enforces first-order stochastic dominance $F_\tau\le F_0$, hence $\Delta_k\ge0$
+for all $k$ and zero pass@1 gain under Assumption \ref{ass:spec}. The frontier
+is the exact exchange rate between pass@1 and pass@$k$; it is a linear program
+in $Q$ and has a closed form for $M=2$.
+\end{theorem}
+
+\begin{theorem}[Tilt law]
+\label{thm:tiltlaw}
+Let the base be uniform and let the fitness density near its maximum $b$ behave
+as $c\,g^{\kappa-1}$ in the gap $g=b-f$. In the mesoscopic regime the
+entropy-performance relation is
+\begin{equation}
+b-R \;=\; a_\kappa\,\exp(H/\kappa)\,(1+o(1)),
+\end{equation}
+where $R=\inner{\wt}{f}$ and $H=H(\wt)$. The exponent $\kappa$ is identifiable
+from the slope of $\log(b-R)$ against $H$; $\kappa=1$ recovers
+$R=-a\,e^{H}+b$ of Cui et al. (2505.22617). This result is stated for context;
+the exact entropy-mass curve and the non-exponential terminal law are due to
+concurrent work (Winner-Take-All, S4R2zYtFhs).
+\end{theorem}
+
+\begin{lemma}[Entropy bump]
+\label{lem:bump}
+Along the tilt, $\tfrac{\mathrm{d}}{\mathrm{d}\tau}H(\wt)
+=-\mathrm{Cov}_{\wt}(f,\log \wz)-\tau\,\mathrm{Var}_{\wt}(f)$.
+Entropy rises before it collapses if and only if
+$\mathrm{Cov}_{\wz}(f,\log \wz)<0$, that is, the high-fitness strategies are
+initially underweighted.
+\end{lemma}
+
+\begin{lemma}[Sharing is necessary]
+\label{lem:sharing}
+If each prompt is served by its own independent (tabular) policy and the update
+follows the full gradient flow, then $p_x$ is nondecreasing for every $x$, so
+$\Delta_k\ge0$ for all $k$ and no inversion occurs. A pass@$k$ inversion
+therefore requires strategies shared across prompts. Under finite-group
+stochastic GRPO the monotonicity can fail transiently (2602.06717).
+\end{lemma}
+
+\paragraph{What is new, and why it matters.}
+Theorem \ref{thm:nfl} is the headline and is unconditional given Assumption
+\ref{ass:spec}: concentration buys pass@1 only by spending some prompt's
+success, and the pricing identity \eqref{eq:farkas} values the trade exactly.
+This answers, with a mechanism, why RLVR cannot widen the reasoning frontier
+for free and says what it costs when it improves pass@1. Theorem
+\ref{thm:price}(a) bounds the number of pass@$k$ crossings for an arbitrary
+shift in per-prompt success; this is the general statement that concurrent work
+leaves open for kernels and multiple crossings (Yang and Chen, 2609.22547,
+Rem.~1), and it recovers their single-crossover theorem as the order-preserving
+corollary \ref{thm:price}(d). Theorem \ref{thm:price}(c) then turns the
+per-prompt price into the observed aggregate phenomenon, the crossover, under
+the named Fine Coverage condition, with the counterexample regime
+\ref{thm:price}(e) bounding its scope and making it falsifiable. Theorem
+\ref{thm:frontier} is the exact exchange rate and the only place a
+``correction'' appears: not a free fix, since none exists, but the frontier that
+attains the minimal price. Theorem \ref{thm:tiltlaw} and the lemmas tie the same
+tilt identity to the entropy side studied in concurrent work. The practical
+read-off is a diagnostic that takes only per-prompt base and RL success rates,
+available in any evaluation log, and returns the crossing bound, the
+order-preserving test, and the estimated price. There is no free lunch, only a
+price.

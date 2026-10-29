@@ -1,0 +1,66 @@
+{
+  "provenance": "2607.20543 Table 2, transcribed, INDICATIVE, verify at source",
+  "ks": [
+    1.0,
+    4.0,
+    16.0,
+    64.0,
+    256.0
+  ],
+  "results": {
+    "Omni-MATH-Test": {
+      "GRPO": {
+        "delta_pass_at_k": [
+          0.149,
+          0.144,
+          0.104,
+          0.03,
+          -0.008
+        ],
+        "n_crossings_in_window": 1,
+        "crossing_ks": [
+          256.0
+        ],
+        "price_visible_in_window": true
+      },
+      "GRPO+PBA": {
+        "delta_pass_at_k": [
+          0.188,
+          0.205,
+          0.188,
+          0.101,
+          0.039
+        ],
+        "n_crossings_in_window": 0,
+        "crossing_ks": [],
+        "price_visible_in_window": false
+      }
+    },
+    "MATH500": {
+      "GRPO": {
+        "delta_pass_at_k": [
+          0.396,
+          0.274,
+          0.131,
+          0.038,
+          0.01
+        ],
+        "n_crossings_in_window": 0,
+        "crossing_ks": [],
+        "price_visible_in_window": false
+      },
+      "GRPO+PBA": {
+        "delta_pass_at_k": [
+          0.411,
+          0.282,
+          0.137,
+          0.044,
+          0.016
+        ],
+        "n_crossings_in_window": 0,
+        "crossing_ks": [],
+        "price_visible_in_window": false
+      }
+    }
+  }
+}

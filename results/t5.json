@@ -1,0 +1,64 @@
+{
+  "ks_min": 1,
+  "ks_max": 100000,
+  "n_k": 379,
+  "R2_R3_ensemble": {
+    "n_instances": 3000,
+    "frac_0_crossings": 0.739,
+    "frac_unique_crossing": 0.25833333333333336,
+    "frac_multiple_crossings": 0.0026666666666666666,
+    "max_crossings_seen": 2,
+    "n_inverters": 783,
+    "among_inverters_frac_multiple": 0.010217113665389528,
+    "karlin_checked": 3000,
+    "karlin_violations": 0
+  },
+  "R2_tightness_constructive": {
+    "per_T": [
+      {
+        "target_crossings": 1,
+        "n_levels": 3,
+        "max_crossings_found": 1,
+        "achieved": true
+      },
+      {
+        "target_crossings": 2,
+        "n_levels": 4,
+        "max_crossings_found": 2,
+        "achieved": true
+      },
+      {
+        "target_crossings": 3,
+        "n_levels": 5,
+        "max_crossings_found": 3,
+        "achieved": true
+      },
+      {
+        "target_crossings": 4,
+        "n_levels": 6,
+        "max_crossings_found": 4,
+        "achieved": true
+      },
+      {
+        "target_crossings": 5,
+        "n_levels": 7,
+        "max_crossings_found": 5,
+        "achieved": true
+      },
+      {
+        "target_crossings": 6,
+        "n_levels": 8,
+        "max_crossings_found": 6,
+        "achieved": true
+      }
+    ],
+    "any_bound_violation_in_search": false
+  },
+  "R3_order_preserving": {
+    "n_instances": 1035,
+    "n_unique": 1035,
+    "n_nonunique": 0,
+    "frac_unique": 1.0
+  },
+  "figure_found_double_crossing": true
+}

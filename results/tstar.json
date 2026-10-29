@@ -1,0 +1,82 @@
+{
+  "counterexample_unique_best": {
+    "Q": [
+      [
+        1.0,
+        0.9,
+        0.96
+      ],
+      [
+        0.9,
+        1.0,
+        0.96
+      ],
+      [
+        0.5,
+        0.5,
+        1.0
+      ]
+    ],
+    "freelunch_gain": 0.17333333333333334,
+    "has_free_lunch": true,
+    "stiemke_dual_feasible": false,
+    "note": "unique-best specialization holds yet a free lunch exists"
+  },
+  "exclusive_specialized": {
+    "n": 1000,
+    "frac_no_free_lunch": 1.0,
+    "frac_stiemke_dual_feasible": 1.0,
+    "primal_dual_agreement": 1.0
+  },
+  "unique_best": {
+    "n": 500,
+    "frac_no_free_lunch": 1.0,
+    "frac_stiemke_dual_feasible": 1.0,
+    "primal_dual_agreement": 1.0
+  },
+  "quasi_generalist": {
+    "n": 500,
+    "frac_no_free_lunch": 1.0,
+    "frac_stiemke_dual_feasible": 1.0,
+    "primal_dual_agreement": 1.0
+  },
+  "overlapping": {
+    "n": 500,
+    "frac_no_free_lunch": 1.0,
+    "frac_stiemke_dual_feasible": 1.0,
+    "primal_dual_agreement": 1.0
+  },
+  "near_generalist_adversarial": {
+    "n": 500,
+    "frac_no_free_lunch": 0.0,
+    "frac_stiemke_dual_feasible": 0.0,
+    "primal_dual_agreement": 1.0
+  },
+  "dominant_specialized": {
+    "n": 2000,
+    "frac_no_free_lunch": 1.0,
+    "frac_stiemke_dual_feasible": 1.0,
+    "primal_dual_agreement": 1.0
+  },
+  "fine_coverage": {
+    "holds": {
+      "frac_crossover": 1.0,
+      "frac_min_success_dropped": 1.0
+    },
+    "fails": {
+      "frac_crossover": 0.0,
+      "frac_min_success_dropped": 0.0
+    }
+  },
+  "fine_coverage_threshold_counterexample": {
+    "R0_base_mean": 0.5625,
+    "R_tilted_mean": 0.8141204756558588,
+    "Lambda_over_tau": 0.7199678794196525,
+    "strategy_f": 0.75,
+    "weight_ratio": 1.1620208516635708,
+    "f_below_R_tau": true,
+    "f_below_Lambda_over_tau": false,
+    "weight_increased": true,
+    "note": "0.75 < R(tau) but 0.75 > Lambda/tau, so weight rises: R(tau) is the wrong threshold; R0 (Jensen) is safe"
+  }
+}
