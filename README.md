@@ -6,7 +6,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Verification](https://img.shields.io/badge/verification-34%2F34%20passing-brightgreen.svg)](#reproduce-every-number)
 [![Paper](https://img.shields.io/badge/paper-LaTeX%20compiles-success.svg)](paper/)
-[![arXiv](https://img.shields.io/badge/arXiv-pending-b31b1b.svg)](#citation)
+[![arXiv](https://img.shields.io/badge/arXiv-2610.39295-b31b1b.svg)](#citation)
 [![Made with NumPy](https://img.shields.io/badge/made%20with-NumPy%20%2F%20SciPy-013243.svg)](https://numpy.org/)
 
 A solvable theory of reinforcement learning with verifiable rewards (RLVR). It
